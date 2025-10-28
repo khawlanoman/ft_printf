@@ -38,28 +38,28 @@ int ft_printf(const char *k, ...)
             }
             else if (k[i] == 'p')
             {
-                ft_putptr(va_arg(n1,void *));
+                count +=ft_putptr(va_arg(n1,void *));
             }
             else if (k[i] == '%' )
             {
-                count +=ft_putchar('%'); 
+                count +=ft_putchar(('%')); 
             }
             
         }
         else
         {
-            count +=ft_putchar(k[i]);  
+            count +=ft_putchar((k[i]));  
         }
         i++;
     }
-    va_end(n1);
-    return (count);
    
+    return (count);
+    va_end(n1);
 }
 
 int main(void)
 {
 	//ft_printf("Hello %s! %%2 You scored %p points.", "Khawla", -1);
-	ft_printf("\n%d",ft_printf("n:%d", 42));
+	ft_printf("\n%d",ft_printf("%d", 11));
     return 0;
 }

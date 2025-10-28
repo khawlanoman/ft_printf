@@ -12,6 +12,6 @@ int	ft_putchar(char c);
 int    ft_putnbr_unsigned(unsigned int n);
 int    ft_base16_lower(unsigned long n);
 int    ft_base16_upper(unsigned int n);
-void ft_putptr(void *ptr);
+int   ft_putptr(void *ptr);
 
 #endif

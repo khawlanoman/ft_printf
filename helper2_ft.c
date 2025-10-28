@@ -6,9 +6,10 @@ int    ft_base16_lower(unsigned long n)
     int count = 0;
 	char str[16] = "0123456789abcdef";
 	if (n >= 16)
-		ft_base16_lower(n / 16);
-    count++;
+		count +=ft_base16_lower(n / 16);
+    
 	ft_putchar(str[n % 16]);
+    count++;
     return (count);
 }
 ////////////ft_base16_upper///////////
@@ -16,19 +17,21 @@ int    ft_base16_upper(unsigned int n)
 {   int count = 0;
 	char str[16] = "0123456789ABCDEF";
 	if (n >= 16)
-		ft_base16_upper(n / 16);
-    count++;
+		count +=ft_base16_upper(n / 16);
+    
 	ft_putchar(str[n % 16]);
+    count++;
     return(count);
 }
 
-void ft_putptr(void *ptr)
+int ft_putptr(void *ptr)
 {
+    int count = 0;
 	if (!ptr)
-		return ;
+		return (0);
 	unsigned long p = (unsigned long)ptr;
-	ft_putchar('0');
-	ft_putchar('x');
-	ft_base16_lower(p);
-
+	count +=ft_putchar('0');
+	count +=ft_putchar('x');
+	count +=ft_base16_lower(p);
+    return(count);
 }
