@@ -35,12 +35,17 @@ int ft_printf(const char *k, ...)
             else if (k[i] == 'x')
             {
                 count++;
-               ft_base16_lower(va_arg(n1,unsigned int));
+               ft_base16_lower(va_arg(n1,unsigned long));
             }
             else if (k[i] == 'X')
             {
                 count++;
                ft_base16_upper(va_arg(n1,unsigned int));
+            }
+            else if (k[i] == 'p')
+            {
+                count++;
+               ft_putptr(va_arg(n1,void *));
             }
             else if (k[i] == '%' )
             {
@@ -61,6 +66,6 @@ int ft_printf(const char *k, ...)
 
 int main(void)
 {
-	ft_printf("Hello %s! %%2 You scored %X points.\n ", "Khawla", -1);
+	ft_printf("Hello %s! %%2 You scored %x points.\n ", "Khawla", -1);
 	return 0;
 }

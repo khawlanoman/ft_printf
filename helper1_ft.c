@@ -60,18 +60,29 @@ void ft_putnbr_unsigned(unsigned int n)
 
 }
 ////////////ft_base16_lower///////////
-void    ft_base16_lower(unsigned int n)
+void    ft_base16_lower(unsigned long n)
 {
 	char str[16] = "0123456789abcdef";
 	if (n >= 16)
 		ft_base16_lower(n / 16);
 	ft_putchar(str[n % 16]);
 }
-
+////////////ft_base16_upper///////////
 void    ft_base16_upper(unsigned int n)
 {
 	char str[16] = "0123456789ABCDEF";
 	if (n >= 16)
 		ft_base16_upper(n / 16);
 	ft_putchar(str[n % 16]);
+}
+
+void ft_putptr(void *ptr)
+{
+	if (!ptr)
+		return ;
+	unsigned long p = (unsigned long)ptr;
+	ft_putchar('0');
+	ft_putchar('x');
+	ft_base16_lower(p);
+
 }
