@@ -1,88 +1,75 @@
 #include "ft_printf.h"
-#include <unistd.h>
 ////////ft_putchar///////
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
+	int count;
+
+	count = 1;
 	write(1, &c, 1);
+	return (count);
 }
 ////////ft_putnbr///////
-void	ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
 	long	nb;
+	int	count;
 
+	count = 0;
 	nb = n;
 	if (nb == 0)
 	{
 		ft_putchar('0');
-		return ;
+		count++;
+		return (0);
 	}
 	if (nb < 0)
 	{
 		ft_putchar('-');
+		count++;
 		nb *= -1;
 	}
 	if (nb > 9)
 	{
 		ft_putnbr((nb / 10));
 	}
+	count++;
 	ft_putchar((nb % 10 + '0'));
+	return(count);
 }
 ////////ft_putstr///////
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
+	int count;
 
 	i = 0;
+	count = 0;
 	if (!s)
-		return ;
+		return (0);
 	while (s[i])
 	{
+		count++;
 		write(1, &s[i], 1);
 		i++;
 	}
+	return (count);
 }
 //////////ft_putnbr_unsigned////////////
-void ft_putnbr_unsigned(unsigned int n)
+int ft_putnbr_unsigned(unsigned int n)
 {
+	int count = 0;
 	unsigned int nb;
 
 	nb = n;
 	if (nb == 0)
 	{
 		ft_putchar('0');
-		return ;
+		return (0);
 	}
 	if (nb > 9)
 	{
 		ft_putnbr((nb / 10));
 	}
-	ft_putchar((nb % 10 + '0'));
-
-}
-////////////ft_base16_lower///////////
-void    ft_base16_lower(unsigned long n)
-{
-	char str[16] = "0123456789abcdef";
-	if (n >= 16)
-		ft_base16_lower(n / 16);
-	ft_putchar(str[n % 16]);
-}
-////////////ft_base16_upper///////////
-void    ft_base16_upper(unsigned int n)
-{
-	char str[16] = "0123456789ABCDEF";
-	if (n >= 16)
-		ft_base16_upper(n / 16);
-	ft_putchar(str[n % 16]);
-}
-
-void ft_putptr(void *ptr)
-{
-	if (!ptr)
-		return ;
-	unsigned long p = (unsigned long)ptr;
-	ft_putchar('0');
-	ft_putchar('x');
-	ft_base16_lower(p);
-
+	
+	return (count);
 }

@@ -14,58 +14,52 @@ int ft_printf(const char *k, ...)
             i++;
             if (k[i] == 'd' || k[i] == 'i')
             {
-                count ++;
-                ft_putnbr(va_arg(n1, int));
+                count +=ft_putnbr(va_arg(n1, int));
             }
             else if (k[i] == 's' )
             {
-                count ++;
-                ft_putstr(va_arg(n1,char *));
+                count +=ft_putstr(va_arg(n1,char *));
             }
             else if (k[i] == 'c' )
             {
-                count++;
-                ft_putchar(va_arg(n1, int));
+                count +=ft_putchar(va_arg(n1, int));
             }
             else if (k[i] == 'u' )
             {
-                count++;
-                ft_putnbr_unsigned(va_arg(n1, unsigned int));
+                count +=ft_putnbr_unsigned(va_arg(n1, unsigned int));
             }
             else if (k[i] == 'x')
             {
-                count++;
-               ft_base16_lower(va_arg(n1,unsigned long));
+                count +=ft_base16_lower(va_arg(n1,unsigned long));
             }
             else if (k[i] == 'X')
             {
-                count++;
-               ft_base16_upper(va_arg(n1,unsigned int));
+                count +=ft_base16_upper(va_arg(n1,unsigned int));
             }
             else if (k[i] == 'p')
             {
-                count++;
-               ft_putptr(va_arg(n1,void *));
+                ft_putptr(va_arg(n1,void *));
             }
             else if (k[i] == '%' )
             {
-                count++;
-                ft_putchar('%'); 
+                count +=ft_putchar('%'); 
             }
             
         }
         else
         {
-            count ++;
-          ft_putchar(k[i]);  
+            count +=ft_putchar(k[i]);  
         }
         i++;
     }
+    va_end(n1);
     return (count);
+   
 }
 
 int main(void)
 {
-	ft_printf("Hello %s! %%2 You scored %x points.\n ", "Khawla", -1);
-	return 0;
+	//ft_printf("Hello %s! %%2 You scored %p points.", "Khawla", -1);
+	ft_printf("\n%d",ft_printf("n:%d", 42));
+    return 0;
 }
