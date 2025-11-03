@@ -6,7 +6,7 @@
 /*   By: khnoman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 09:51:50 by khnoman           #+#    #+#             */
-/*   Updated: 2025/10/29 10:50:25 by khnoman          ###   ########.fr       */
+/*   Updated: 2025/11/01 11:57:56 by khnoman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -54,7 +54,11 @@ int	ft_putstr(char *s)
 	i = 0;
 	count = 0;
 	if (!s)
-		return (0);
+	{
+		count = 6;
+		write(1, "(null)", 6);
+		return (count);
+	}
 	while (s[i])
 	{
 		count++;
@@ -68,18 +72,13 @@ int	ft_putstr(char *s)
 int	ft_putnbr_unsigned(unsigned int n)
 {
 	int				count;
-	unsigned int	nb;
 
-	nb = n;
 	count = 0;
-	if (nb == 0)
+	if (n > 9)
 	{
-		ft_putchar('0');
+		count += ft_putnbr_unsigned((n / 10));
 	}
-	if (nb > 9)
-	{
-		count += ft_putnbr((nb / 10));
-	}
-	count++;
+	count +=ft_putchar((n % 10 + '0'));
+	
 	return (count);
 }
